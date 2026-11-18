@@ -1,0 +1,15 @@
+rules:
+  - id: aether-hardcoded-password
+    languages: [python]
+    severity: WARNING
+    message: A password is assigned a string literal. Use a secret store.
+    patterns:
+      - pattern: $NAME = "..."
+      - metavariable-regex:
+          metavariable: $NAME
+          regex: '(?i)^(password|db_password|api_password)$'
+  - id: aether-weak-random-token
+    languages: [python]
+    severity: WARNING
+    message: Use cryptographic randomness for security-sensitive tokens.
+    pattern: random.random()
