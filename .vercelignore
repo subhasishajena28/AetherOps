@@ -1,0 +1,16 @@
+backend
+scripts
+tests
+deployment
+.venv
+__pycache__
+.pytest_cache
+.env
+.env.local
+.agon-env
+*.sqlite*
+1794988016058_jb9ar7.txt
+public/images/analysis-core.png
+
+.qa
+.ruff_cache
