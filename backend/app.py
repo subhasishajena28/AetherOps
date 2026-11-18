@@ -68,7 +68,7 @@ if MODE == "gateway" and (
 app = FastAPI(
     title="AetherOps analysis service",
     version="1.0.0",
-    docs_url=None if MODE == "gateway" else "/api/docs",
+    docs_url="/api/docs",
     redoc_url=None,
 )
 
