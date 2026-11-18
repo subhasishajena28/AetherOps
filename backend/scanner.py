@@ -32,7 +32,7 @@ def sample_zip(name: str) -> bytes:
         raise ValueError("Unknown example")
     out = io.BytesIO()
     with zipfile.ZipFile(out, "w") as z:
-        for p in sorted((HERE / "example_projects" / name).glob("*.py")):
+        for p in sorted((HERE / "example_project" / name).glob("*.py")):
             entry = zipfile.ZipInfo(p.name, (2025, 1, 1, 0, 0, 0))
             entry.compress_type = zipfile.ZIP_DEFLATED
             z.writestr(entry, p.read_bytes())
