@@ -1,0 +1,137 @@
+[
+  {
+    "id": "474947f3-c7ba-4cb0-ba7b-4cf5ed13727d",
+    "project": "Atlas \u00b7 Review sample",
+    "created_at": "2026-11-18T08:18:34.153772+00:00",
+    "status": "Complete",
+    "files": 2,
+    "skipped": 0,
+    "duration": 3.11,
+    "engines": [
+      {
+        "name": "Bandit",
+        "version": "1.9.4",
+        "status": "Complete",
+        "count": 2,
+        "note": ""
+      },
+      {
+        "name": "Semgrep",
+        "version": "1.186.0",
+        "status": "Complete",
+        "count": 2,
+        "note": ""
+      },
+      {
+        "name": "detect-secrets",
+        "version": "1.5.0",
+        "status": "Complete",
+        "count": 1,
+        "note": ""
+      }
+    ],
+    "findings": [
+      {
+        "id": "F-001",
+        "engine": "Bandit",
+        "rule": "B105",
+        "title": "Hardcoded password",
+        "severity": "Low",
+        "file": "config.py",
+        "line": 3,
+        "explanation": "A static rule identified a credential-like value in source. Anyone with repository access may be able to read it. The value is intentionally omitted from this report; review it privately to confirm.",
+        "fix": "Remove the literal, load the value from a deployment secret store, and rotate it if it was ever a real credential. Review repository history for previous exposure.",
+        "pattern": "import os\npassword = os.environ[\"DATABASE_PASSWORD\"]"
+      },
+      {
+        "id": "F-002",
+        "engine": "Bandit",
+        "rule": "B311",
+        "title": "Non-cryptographic randomness",
+        "severity": "Low",
+        "file": "tokens.py",
+        "line": 7,
+        "explanation": "The standard random generator is not suitable for session identifiers or security tokens. Confirm whether the reported value crosses a security boundary. Non-security uses may be acceptable.",
+        "fix": "Use the secrets module for tokens. Keep ordinary random number generation only for simulation or other non-security uses.",
+        "pattern": "import secrets\nnonce = secrets.token_urlsafe(32)"
+      },
+      {
+        "id": "F-003",
+        "engine": "Semgrep",
+        "rule": "aether-hardcoded-password",
+        "title": "Hardcoded password",
+        "severity": "Medium",
+        "file": "config.py",
+        "line": 3,
+        "explanation": "A static rule identified a credential-like value in source. Anyone with repository access may be able to read it. The value is intentionally omitted from this report; review it privately to confirm.",
+        "fix": "Remove the literal, load the value from a deployment secret store, and rotate it if it was ever a real credential. Review repository history for previous exposure.",
+        "pattern": "import os\npassword = os.environ[\"DATABASE_PASSWORD\"]"
+      },
+      {
+        "id": "F-004",
+        "engine": "Semgrep",
+        "rule": "aether-weak-random-token",
+        "title": "Non-cryptographic randomness",
+        "severity": "Medium",
+        "file": "tokens.py",
+        "line": 7,
+        "explanation": "The standard random generator is not suitable for session identifiers or security tokens. Confirm whether the reported value crosses a security boundary. Non-security uses may be acceptable.",
+        "fix": "Use the secrets module for tokens. Keep ordinary random number generation only for simulation or other non-security uses.",
+        "pattern": "import secrets\nnonce = secrets.token_urlsafe(32)"
+      },
+      {
+        "id": "F-005",
+        "engine": "detect-secrets",
+        "rule": "Secret Keyword",
+        "title": "Potential hardcoded credential",
+        "severity": "High",
+        "file": "config.py",
+        "line": 3,
+        "explanation": "A static rule identified a credential-like value in source. Anyone with repository access may be able to read it. The value is intentionally omitted from this report; review it privately to confirm.",
+        "fix": "Remove the literal, load the value from a deployment secret store, and rotate it if it was ever a real credential. Review repository history for previous exposure.",
+        "pattern": "import os\npassword = os.environ[\"DATABASE_PASSWORD\"]"
+      }
+    ],
+    "triage": {},
+    "origin": "Recorded sample",
+    "sample": "vulnerable-demo",
+    "sha256": "eb564a90354892a4312f18067a7f152b0419647ce62556c956620ebbb5b6726b"
+  },
+  {
+    "id": "0ef23a6a-da03-463c-971f-7dc5cccd9236",
+    "project": "Atlas \u00b7 Secure baseline",
+    "created_at": "2026-11-18T08:18:37.209625+00:00",
+    "status": "Complete",
+    "files": 2,
+    "skipped": 0,
+    "duration": 3.06,
+    "engines": [
+      {
+        "name": "Bandit",
+        "version": "1.9.4",
+        "status": "Complete",
+        "count": 0,
+        "note": ""
+      },
+      {
+        "name": "Semgrep",
+        "version": "1.186.0",
+        "status": "Complete",
+        "count": 0,
+        "note": ""
+      },
+      {
+        "name": "detect-secrets",
+        "version": "1.5.0",
+        "status": "Complete",
+        "count": 0,
+        "note": ""
+      }
+    ],
+    "findings": [],
+    "triage": {},
+    "origin": "Recorded sample",
+    "sample": "secure-demo",
+    "sha256": "c620980724f8b5c9d5400738ed3ccd85fcc6cb8ff1865f73b711973c3654f609"
+  }
+]
